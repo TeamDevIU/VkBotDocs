@@ -1,0 +1,294 @@
+{
+    "project": {
+        "name": "vkgroupbot",
+        "description": "VkGroupBot",
+        "version": "1.0.0",
+        "url": ""
+    },
+    "files": {
+        "app/Bot/bot.js": {
+            "name": "app/Bot/bot.js",
+            "modules": {
+                "bot.js": 1
+            },
+            "classes": {
+                "VkRequestHandler": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/main.js": {
+            "name": "app/main.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/tasks_distributor.js": {
+            "name": "app/tasks_distributor.js",
+            "modules": {},
+            "classes": {
+                "TasksDistributor": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/worker.js": {
+            "name": "app/worker.js",
+            "modules": {
+                "worker.js": 1
+            },
+            "classes": {
+                "onResponse": 1,
+                "onErrorMessage": 1,
+                "process.on": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "bot.js": {
+            "name": "bot.js",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "VkRequestHandler": 1,
+                "TasksDistributor": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/tasks_distributor.js",
+            "line": 2,
+            "description": "Обработчик всех входящих сообщений на сервер"
+        },
+        "worker.js": {
+            "name": "worker.js",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "onResponse": 1,
+                "onErrorMessage": 1,
+                "process.on": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/worker.js",
+            "line": 41,
+            "description": "Функция обработки команды от пользователя\nс последующей отправкой ответа в чат вк.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "user_id",
+                    "description": "id пользователя в вк.",
+                    "type": "Number",
+                    "optional": true
+                },
+                {
+                    "name": "user_name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "response",
+                    "description": "ответ от dialogflow.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "uses": [
+                "HandlerFabric"
+            ]
+        }
+    },
+    "classes": {
+        "VkRequestHandler": {
+            "name": "VkRequestHandler",
+            "shortname": "VkRequestHandler",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "bot.js",
+            "file": "app/Bot/bot.js",
+            "line": 7,
+            "description": "Обработчик всех входящих сообщений на сервер"
+        },
+        "TasksDistributor": {
+            "name": "TasksDistributor",
+            "shortname": "TasksDistributor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "bot.js",
+            "namespace": "",
+            "file": "app/tasks_distributor.js",
+            "line": 2,
+            "description": "необходим для распределения задач на\nдочернее процессы. Распределяет задачи по кругу",
+            "type": "{module.TasksDistributor}"
+        },
+        "onResponse": {
+            "name": "onResponse",
+            "shortname": "onResponse",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "worker.js",
+            "namespace": "",
+            "file": "app/worker.js",
+            "line": 8,
+            "description": "Функция обработки команды от пользователя\nс последующей отправкой ответа в чат вк."
+        },
+        "onErrorMessage": {
+            "name": "onErrorMessage",
+            "shortname": "onErrorMessage",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "worker.js",
+            "namespace": "",
+            "file": "app/worker.js",
+            "line": 23,
+            "description": "Функция обработки ошибки\nс последующей отправкой ошибки в чат вк."
+        },
+        "process.on": {
+            "name": "process.on",
+            "shortname": "process.on",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "worker.js",
+            "namespace": "",
+            "file": "app/worker.js",
+            "line": 41,
+            "description": "Принимает сообщение от главного процесса.\nПолучает от HandlerFabric обработчик\nсогласно типу входящего сообщения, затем\nвызывает его выполнение"
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "app/Bot/bot.js",
+            "line": 13,
+            "description": "Конструктор класса",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "vkBot",
+                    "description": "Бот с сервером",
+                    "type": "Vkbot",
+                    "optional": true
+                },
+                {
+                    "name": "webhook",
+                    "description": "конфигуация webhook-a",
+                    "type": "Webhook",
+                    "optional": true
+                }
+            ],
+            "class": "VkRequestHandler",
+            "module": "bot.js"
+        },
+        {
+            "file": "app/Bot/bot.js",
+            "line": 25,
+            "description": "Проверка тела на наличие полей type и group_id",
+            "itemtype": "method",
+            "name": "",
+            "params": [
+                {
+                    "name": "request",
+                    "description": ""
+                },
+                {
+                    "name": "response",
+                    "description": ""
+                }
+            ],
+            "class": "VkRequestHandler",
+            "module": "bot.js"
+        },
+        {
+            "file": "app/main.js",
+            "line": 73,
+            "description": "Вызывается при входящем сообщении от вк пользователя",
+            "params": [
+                {
+                    "name": "listener",
+                    "description": "",
+                    "type": "Callback",
+                    "optional": true
+                }
+            ],
+            "class": "TasksDistributor",
+            "module": "bot.js"
+        },
+        {
+            "file": "app/tasks_distributor.js",
+            "line": 9,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "workers",
+                    "description": "",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "class": "TasksDistributor",
+            "module": "bot.js"
+        },
+        {
+            "file": "app/tasks_distributor.js",
+            "line": 28,
+            "itemtype": "method",
+            "name": "execute\nПередает задачу следующему воркеру",
+            "params": [
+                {
+                    "name": "task",
+                    "description": ""
+                }
+            ],
+            "class": "TasksDistributor",
+            "module": "bot.js"
+        },
+        {
+            "file": "app/tasks_distributor.js",
+            "line": 37,
+            "itemtype": "method",
+            "name": "onMessage\nПодписывает функцию обработки сообщений от воркеров",
+            "params": [
+                {
+                    "name": "onMessageFunc",
+                    "description": ""
+                }
+            ],
+            "class": "TasksDistributor",
+            "module": "bot.js"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nКонструктор класса",
+            "line": " app/Bot/bot.js:13"
+        },
+        {
+            "message": "Missing item type\nВызывается при входящем сообщении от вк пользователя",
+            "line": " app/main.js:73"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/tasks_distributor.js:9"
+        }
+    ]
+}
